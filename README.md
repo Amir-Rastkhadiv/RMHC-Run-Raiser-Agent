@@ -58,13 +58,7 @@ This 7-step process ensures reliability and consistency for every post generated
 | **Statistical Memory** | Total money raised, total kilometers run, percentage to goal. | Provides cumulative totals for milestone-based content. |
 | **Episodic Memory** | Records of the last 10 posts, post sentiment, and resulting engagement. | Used to vary post tone and content, avoiding repetition. |
 
----
-
-6.  **Commit the Changes:** Scroll to the bottom of the edit screen. The default commit message will be fine (e.g., "Update README.md"), or you can type a more descriptive one like: `feat: Add detailed multi-platform agent architecture to README`.
-7.  Click the green **"Commit changes"** button.
-
-Once you confirm the update is complete, we can start writing the actual code in your Colab/Kaggle notebook!
-
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Execution and Observability
 The full code and execution environment are available in the [Capstone_Codelab.ipynb](notebooks/Capstone_Codelab.ipynb). [cite_start]**Observability** (Logging, Tracing, Metrics) is foundational for ensuring the agent is reliable and trustworthy[cite: 4138].
 
