@@ -18,14 +18,5 @@ This agent is built upon a state-of-the-art, production-grade architecture:
 ## Execution and Observability
 The full code and execution environment are available in the [Capstone_Codelab.ipynb](notebooks/Capstone_Codelab.ipynb). [cite_start]**Observability** (Logging, Tracing, Metrics) is foundational for ensuring the agent is reliable and trustworthy[cite: 4138].
 
----
 
-### Step 1.3: Lock in the Agent Definition (Day 1)
 
-Before we start coding, we need the final, personalized design inputs. Your answers will become the agent's **System Instructions** and dictate the next steps.
-
-Please provide these **three critical design decisions** now:
-
-1.  **The Agent's Persona (Tone):** What is the agent's voice? (e.g., **Enthusiastic and Motivational**, or **Fact-driven and Inspiring**).
-2.  **The Agent's Target Platform:** Which single platform will the agent post to first? (e.g., **Twitter/X**, **Instagram**, or **LinkedIn**).
-3.  **The Key Data Source:** What is the primary, numerical data point the agent will use? (e.g., **Total running miles this week**, or **Total money raised so far**).
