@@ -115,5 +115,11 @@ Run the agent demo from the root directory:
 ```bash
 python -m src.demo
 
+### Output Includes:
 
+Final approved post
+
+Full TrajectoryLog
+
+Proof of tools → memory → judge → publish loop
 
