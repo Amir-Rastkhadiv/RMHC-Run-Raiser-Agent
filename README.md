@@ -114,13 +114,15 @@ RMHC-Run-Raiser-Agent/ ├── src/ │ ├── agent.py # Orchestration log
 Run the agent demo from the root directory:
 ```bash
 python -m src.demo
-Output Includes:
+
+
+###Output Includes:
 
 The final, approved post text.
 
 The complete, step-by-step TrajectoryLog proving the tools → memory → judge → publish loop.
 
-🚧 Limitations & Future Work
+### 🚧 Limitations & Future Work
 Action tools (publishing to LinkedIn, Strava) are currently simulated.
 
 Future enhancement: integrate an image generation tool to dynamically create milestone poster images (e.g., customizing the "£500+ THANK YOU" asset).
@@ -129,5 +131,5 @@ Ready for production deployment to Vertex AI Agent Engine.
 
 Potential integration with webhooks for real-time donation triggers.
 
-🎉 Summary
+### 🎉 Summary
 The RMHC Run-Raiser Agent is a production-ready Level 2 agent that achieves high-value automation for the Enterprise Agents track. It demonstrates multi-step decision-making, LLM-powered generation + evaluation, custom tools, memory, and full observability—all grounded in a compelling real-world fundraising context.
