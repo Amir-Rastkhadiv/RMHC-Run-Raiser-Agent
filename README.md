@@ -117,5 +117,3 @@ python -m src.demo
 
 
 
-### 🎉 Summary
-The RMHC Run-Raiser Agent is a production-ready Level 2 agent that achieves high-value automation for the Enterprise Agents track. It demonstrates multi-step decision-making, LLM-powered generation + evaluation, custom tools, memory, and full observability—all grounded in a compelling real-world fundraising context.
