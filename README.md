@@ -1,6 +1,6 @@
 # 🚀 RMHC Run-Raiser Agent: Autonomous, Brand-Safe Fundraising Communications
 
-**Subtitle:** A Level 2 Strategic Agent for the Enterprise Agents track, powered by Gemini.
+**Subtitle:** A Level 2 Strategic Agent for the Enterprise Agents track.
 
 The **RMHC Run-Raiser Agent** is designed for the Enterprise Agents track of the Google × Kaggle AI Agents Intensive Capstone. It automates the creation of high-quality, on-brand fundraising communications for Ronald McDonald House Charities UK (RMHC).
 
