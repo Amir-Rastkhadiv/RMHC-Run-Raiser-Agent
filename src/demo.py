@@ -3,12 +3,7 @@ demo.py
 
 Simple CLI demo for the RMHC Run-Raiser Agent.
 
-This script:
-- Builds a realistic PostRequest for a fundraising milestone.
-- Runs the RMHCRunRaiserAgent orchestrator.
-- Prints the final approved post and the full TrajectoryLog.
-
-Run from the repo root with:
+Run from repo root with:
     python -m src.demo
 """
 
@@ -43,8 +38,6 @@ def pretty_print_trajectory(log: TrajectoryLog) -> None:
 
 
 def main() -> None:
-    # Example scenario:
-    # Celebrate ~£500+ milestone with a LinkedIn-style corporate update.
     post_request = PostRequest(
         target_platform=Platform.LINKEDIN,
         tone=Tone.PROFESSIONAL,
@@ -74,7 +67,6 @@ def main() -> None:
         print(f"  Required edits: {judge_feedback.required_edits}")
     print("=============================================================")
 
-    # Print trajectory for observability (core course concept).
     pretty_print_trajectory(trajectory_log)
 
 
