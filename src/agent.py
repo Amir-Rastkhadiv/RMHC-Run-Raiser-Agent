@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List, Optional, Dict, Any
 from uuid import uuid4
 
@@ -50,7 +50,8 @@ class RMHCRunRaiserAgent:
         self.system_instruction = SYSTEM_INSTRUCTION
 
     def _now_iso(self) -> str:
-        return datetime.utcnow().isoformat()
+        """Return current UTC time as ISO string (timezone-aware)."""
+        return datetime.now(timezone.utc).isoformat()
 
     def _add_step(
         self,
@@ -153,8 +154,8 @@ class RMHCRunRaiserAgent:
         # Step 7: update memory + finalise
         update_memory_state(memory, best_candidate)
         final_summary = (
-            f"Published a {post_request.target_platform.value} post with objective '{post_request.objective}'. "
-            f"Judge score: {best_feedback.score_0_100}."
+            f"Published a {post_request.target_platform.value} post with objective "
+            f"'{post_request.objective}'. Judge score: {best_feedback.score_0_100}."
         )
         self._add_step(
             steps, 7, "Update Memory & Finalise",
