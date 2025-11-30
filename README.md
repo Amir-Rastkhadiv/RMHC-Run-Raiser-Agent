@@ -2,6 +2,14 @@
 
 **Subtitle:** A Level 2 Strategic Agent for the Enterprise Agents track.
 
+### At a glance
+
+- 🎯 **Track:** Enterprise Agents (Google × Kaggle AI Agents Intensive)
+- 🧠 **Agent Type:** Level 2 strategic orchestrator with tools, memory, and LLM-as-a-Judge
+- ❤️ **Real impact:** Inspired by a real RMHC fundraiser that raised **£507.15 from 68 donors**
+- 🔍 **Key features:** 7-step trajectory, custom tools, episodic + statistical memory, full TrajectoryLog observability
+
+
 The **RMHC Run-Raiser Agent** is designed for the Enterprise Agents track of the Google × Kaggle AI Agents Intensive Capstone. It automates the creation of high-quality, on-brand fundraising communications for Ronald McDonald House Charities UK (RMHC).
 
 This project is inspired by a real fundraising journey that **raised £507.15 from 68 donations**, supported by milestone assets including a “£500+ THANK YOU” poster. The agent transforms live running activity and fundraising data into safe, platform-specific messaging while enforcing tone, accuracy, and charity-appropriate sensitivity.
