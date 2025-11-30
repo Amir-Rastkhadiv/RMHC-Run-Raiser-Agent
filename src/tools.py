@@ -16,39 +16,32 @@ from .schemas import (
 from .memory_schema import FullMemory
 
 
-# NOTE: In a real system, these tools would call external services (Strava, JustGiving, etc.)
-# and Gemini for content generation. For the capstone demo we keep them as
-# safe, deterministic stubs that are easy to run and easy for judges to read.
-
-
 # TYPE: Retrieving Information (R)
 def get_memory_state() -> FullMemory:
     """
-    Retrieve the current memory state.
+    Return pre-populated memory (simulated).
 
-    For this demo we simulate a pre-populated memory object.
+    Inspired by the real fundraising: ~£507+ raised.
     """
+    from .memory_schema import StatisticalMemory, EpisodicMemory
+
     return FullMemory(
-        statistical={
-            "total_lifetime_raised_usd": 507.15,
-            "total_lifetime_km_run": 42.2,
-            "last_update_date": datetime.utcnow().date().isoformat(),
-        },
-        episodic={
-            "past_successful_posts": [
-                "Huge thank you to everyone who helped us cross the £500 line for RMHC!",
+        statistical=StatisticalMemory(
+            total_lifetime_raised_usd=507.15,
+            total_lifetime_km_run=42.2,
+            last_update_date=datetime.utcnow().date().isoformat(),
+        ),
+        episodic=EpisodicMemory(
+            past_successful_posts=[
+                "Huge thank you to everyone who helped us cross the £500 line for RMHC!"
             ]
-        },
+        ),
     )
 
 
 # TYPE: Retrieving Information (R)
 def get_activity_summary() -> ActivitySummary:
-    """
-    Return a simulated running activity summary.
-
-    In a real agent this would call Strava or a similar API.
-    """
+    """Return a simulated running activity summary."""
     return ActivitySummary(
         date=datetime.utcnow().date().isoformat(),
         distance_km=10.0,
@@ -61,11 +54,7 @@ def get_activity_summary() -> ActivitySummary:
 
 # TYPE: Retrieving Information (R)
 def get_fundraising_summary() -> FundraisingSummary:
-    """
-    Return a simulated fundraising summary.
-
-    Values are inspired by the real JustGiving campaign (~£507+).
-    """
+    """Return a simulated fundraising summary (~£507 milestone)."""
     total = 507.15
     target = 500.0
     percent = round((total / target) * 100, 1)
@@ -83,18 +72,13 @@ def get_fundraising_summary() -> FundraisingSummary:
     )
 
 
-# TYPE: Executing Action (A) – LLM Content Generation (simulated)
+# TYPE: Executing Action (A) – content generation (simulated)
 def generate_post_candidates(
     post_request: PostRequest,
     activity: ActivitySummary,
     fundraising: FundraisingSummary,
 ) -> List[PostCandidate]:
-    """
-    Generate several candidate posts for the requested platform.
-
-    For the demo, we simulate three candidates.
-    In a real implementation this would call Gemini.
-    """
+    """Simulate three candidate posts instead of actually calling Gemini."""
     base_text = (
         f"We’ve just passed £{fundraising.total_raised_usd:.2f} for Ronald McDonald House Charities, "
         f"after a {activity.distance_km:.1f} km run along {activity.route_name}."
@@ -124,7 +108,7 @@ def generate_post_candidates(
                 f"{base_text} We’ve smashed our initial £{fundraising.target_amount_usd:.0f} goal, "
                 f"but every extra pound helps another family stay near the care they need."
             ),
-            rationale="Focuses on milestone and continued need without pressure.",
+            rationale="Focuses on milestone and continued need.",
             risk_flags=[],
         )
     )
@@ -148,25 +132,21 @@ def generate_post_candidates(
 # TYPE: Executing Action (A) – LLM-as-a-Judge (simulated)
 def judge_post_quality(candidate: PostCandidate, platform: Platform) -> JudgeFeedback:
     """
-    Simulated LLM-as-a-Judge.
+    Simulated judge.
 
-    In the real system this would call Gemini with a rubric for tone, safety and accuracy.
-    Here we give simple deterministic scores.
+    In the final agent, this is where Gemini would be called.
     """
-    # Very simple scoring heuristic for the demo:
     base_score = 80
-
     if "smashed" in candidate.text.lower():
-        base_score += 5  # energetic but still safe
+        base_score += 5
     if "please consider donating" in candidate.text.lower():
-        base_score += 5  # clear call-to-action
+        base_score += 5
 
     score = min(base_score, 95)
-
     decision = JudgeDecision.APPROVE
     reasons = (
-        f"Tone appropriate for {platform.value}, clear gratitude and impact, "
-        "no obvious brand or sensitivity issues."
+        f"Tone appropriate for {platform.value}; clear gratitude and impact; "
+        "no obvious sensitivity issues."
     )
 
     return JudgeFeedback(
@@ -180,26 +160,13 @@ def judge_post_quality(candidate: PostCandidate, platform: Platform) -> JudgeFee
 
 # TYPE: Executing Action (A)
 def simulate_publish_post(final_post: PostCandidate) -> str:
-    """
-    Simulate publishing a post.
-
-    For the demo we simply return a string that would be logged.
-    """
-    return (
-        f"[SIMULATED PUBLISH] Platform={final_post.platform.value} | "
-        f"Text='{final_post.text[:120]}...'"
-    )
+    """Return a string describing the simulated publish."""
+    return f"[SIMULATED PUBLISH] Platform={final_post.platform.value} | Text='{final_post.text[:120]}...'"
 
 
 # TYPE: Executing Action (A)
 def update_memory_state(memory: FullMemory, final_post: PostCandidate) -> str:
-    """
-    Update memory with the new post.
-
-    For simplicity we just pretend to append to episodic memory and bump totals.
-    """
-    # In a real system we'd mutate and persist the memory.
+    """Pretend to update memory (no persistence in this demo)."""
     _ = memory
     _ = final_post
     return "[MEMORY UPDATED] Added latest post to episodic history."
-
