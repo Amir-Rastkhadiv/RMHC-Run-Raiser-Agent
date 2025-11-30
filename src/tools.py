@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from typing import List
-from datetime import datetime
+from datetime import datetime, timezone
 
 from .schemas import (
     ActivitySummary,
@@ -13,7 +13,7 @@ from .schemas import (
     Platform,
     JudgeDecision,
 )
-from .memory_schema import FullMemory
+from .memory_schema import FullMemory, StatisticalMemory, EpisodicMemory
 
 
 # TYPE: Retrieving Information (R)
@@ -23,13 +23,11 @@ def get_memory_state() -> FullMemory:
 
     Inspired by the real fundraising: ~£507+ raised.
     """
-    from .memory_schema import StatisticalMemory, EpisodicMemory
-
     return FullMemory(
         statistical=StatisticalMemory(
             total_lifetime_raised_usd=507.15,
             total_lifetime_km_run=42.2,
-            last_update_date=datetime.utcnow().date().isoformat(),
+            last_update_date=datetime.now(timezone.utc).date().isoformat(),
         ),
         episodic=EpisodicMemory(
             past_successful_posts=[
@@ -43,7 +41,7 @@ def get_memory_state() -> FullMemory:
 def get_activity_summary() -> ActivitySummary:
     """Return a simulated running activity summary."""
     return ActivitySummary(
-        date=datetime.utcnow().date().isoformat(),
+        date=datetime.now(timezone.utc).date().isoformat(),
         distance_km=10.0,
         duration_min=55,
         pace_min_per_km=5.5,
@@ -78,7 +76,9 @@ def generate_post_candidates(
     activity: ActivitySummary,
     fundraising: FundraisingSummary,
 ) -> List[PostCandidate]:
-    """Simulate three candidate posts instead of actually calling Gemini."""
+    """
+    Simulate three candidate posts instead of actually calling Gemini.
+    """
     base_text = (
         f"We’ve just passed £{fundraising.total_raised_usd:.2f} for Ronald McDonald House Charities, "
         f"after a {activity.distance_km:.1f} km run along {activity.route_name}."
@@ -150,7 +150,7 @@ def judge_post_quality(candidate: PostCandidate, platform: Platform) -> JudgeFee
     )
 
     return JudgeFeedback(
-        candidate_id=candidate.candidate_id,
+        candidate_id= candidate.candidate_id,
         score_0_100=score,
         decision=decision,
         reasons=reasons,
