@@ -24,9 +24,7 @@ class JudgeDecision(str, Enum):
 
 
 class ActivitySummary(BaseModel):
-    """
-    Simple summary of a run or training session.
-    """
+    """Summary of one run or training session."""
     date: str
     distance_km: float
     duration_min: int
@@ -36,18 +34,14 @@ class ActivitySummary(BaseModel):
 
 
 class DonationDetail(BaseModel):
-    """
-    One donation entry from the fundraising campaign.
-    """
+    """One donation entry."""
     donor_name: str
     amount_usd: float
     message: Optional[str] = None
 
 
 class FundraisingSummary(BaseModel):
-    """
-    Aggregated summary of fundraising progress.
-    """
+    """Aggregated summary of fundraising progress."""
     total_raised_usd: float
     target_amount_usd: float
     percent_to_goal: float
@@ -55,9 +49,7 @@ class FundraisingSummary(BaseModel):
 
 
 class PostRequest(BaseModel):
-    """
-    High-level user intention for the agent.
-    """
+    """High-level user intention for the agent."""
     target_platform: Platform
     tone: Tone
     objective: str
@@ -66,9 +58,7 @@ class PostRequest(BaseModel):
 
 
 class PostCandidate(BaseModel):
-    """
-    One candidate social post for a platform.
-    """
+    """One candidate social post for a platform."""
     candidate_id: str
     platform: Platform
     text: str
@@ -77,9 +67,7 @@ class PostCandidate(BaseModel):
 
 
 class JudgeFeedback(BaseModel):
-    """
-    Result from the LLM-as-a-Judge quality gate.
-    """
+    """Result from the LLM-as-a-Judge quality gate."""
     candidate_id: str
     score_0_100: int
     decision: JudgeDecision
@@ -88,9 +76,7 @@ class JudgeFeedback(BaseModel):
 
 
 class TrajectoryStep(BaseModel):
-    """
-    One step in the 7-step trajectory, for observability.
-    """
+    """One step in the 7-step trajectory, for observability."""
     step_number: int
     step_name: str
     timestamp: str
@@ -100,9 +86,7 @@ class TrajectoryStep(BaseModel):
 
 
 class TrajectoryLog(BaseModel):
-    """
-    Full execution trace for a single agent run.
-    """
+    """Full execution trace for a single agent run."""
     session_id: str
     steps: List[TrajectoryStep]
     final_decision_summary: str
