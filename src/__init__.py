@@ -1,2 +1,2 @@
-# This file makes the directory a Python package.
+# Marks this directory as a Python package for the RMHC Run-Raiser Agent.
 
